@@ -1,3 +1,5 @@
+name: Auto Tag
+
 on:
   push:
     branches:
