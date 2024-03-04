@@ -1,6 +1,6 @@
-# vue-persistedstate-app
+# Pinia Persisted State App
 
-This template should help get you started developing with Vue 3 in Vite.
+This project was created with the purpose of testing the pinia-plugin-persistedstate library which serves to maintain the state of pinia even if the page is reloaded, it maintains the state in the localStorage.
 
 ## Recommended IDE Setup
 
@@ -94,72 +94,6 @@ npm run test:unit
 - Compatible with everything that uses Pinia.
 - No external dependencies in a tiny package (<1kB gzipped).
 
-## 🚀 Quickstart
-
-1. Install with your favorite package manager:
-   - **pnpm** : `pnpm i pinia-plugin-persistedstate`
-   - npm : `npm i pinia-plugin-persistedstate`
-   - yarn : `yarn add pinia-plugin-persistedstate`
-
-2. Add the plugin to pinia:
-```ts
-import { createPinia } from 'pinia'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-
-const pinia = createPinia()
-pinia.use(piniaPluginPersistedstate)
-```
-
-3. Add the `persist` option to the store you want to be persisted:
-```ts
-import { defineStore } from 'pinia'
-
-export const useStore = defineStore('store', {
-  state: () => {
-    return {
-      someState: 'hello pinia',
-    }
-  },
-  persist: true,
-})
-```
-
-## 🔧 Configuration
-
-You can configure how a store is persisted by specifying options to the `persist` property:
-
-```ts
-import { defineStore } from 'pinia'
-
-export const useStore = defineStore('store', {
-  state: () => {
-    return {
-      someState: 'hello pinia',
-    }
-  },
-  persist: {
-    storage: sessionStorage,
-    paths: ['someState'],
-  },
-})
-```
-
-All the available configuration options are explained [here](https://prazdevs.github.io/pinia-plugin-persistedstate/guide/config.html).
-
-## ⚠️ Limitations
-
-There are some limitations that should be considered, more on those [here](https://prazdevs.github.io/pinia-plugin-persistedstate/guide/limitations.html).
-
-## 🤝 Contributing
-
-Run into a problem? Open an [issue](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/new/choose).
-Want to add some feature? PRs are welcome!
-
-## 📝 License
-
-Copyright © 2021-present [Sacha Bouillez](https://github.com/prazdevs).
-This project is under [MIT](https://github.com/prazdevs/pinia-plugin-PERSISTEDSTATE/blob/main/LICENSE) license.
-
 ## 💡 Example
 
 The following example illustrates how this pinia-plugin-persistedstate library was applied.
@@ -171,7 +105,7 @@ With NPM:
 npm i pinia-plugin-persistedstate
 ```
 
-With Yarn
+With Yarn:
 ```ssh
 yarn add pinia-plugin-persistedstate
 ```
@@ -305,8 +239,6 @@ const { count } = storeToRefs(counterStore);
 </template>
 ```
 
-### Images
-
 This is what the application looks like running
 
 ![Example 1](./src/assets/images//example1.png)
@@ -314,3 +246,17 @@ This is what the application looks like running
 If we check the localStorage in the application section when inspecting the page we can see that the store counter is saving or changing the count variable, we can reload the page and verify that the state of the page or component is being maintained
 
 ![Example 2](./src/assets/images//example2.png)
+
+## ⚠️ Limitations
+
+There are some limitations that should be considered, more on those [here](https://prazdevs.github.io/pinia-plugin-persistedstate/guide/limitations.html).
+
+## 🤝 Contributing
+
+Run into a problem? Open an [issue](https://github.com/prazdevs/pinia-plugin-persistedstate/issues/new/choose).
+Want to add some feature? PRs are welcome!
+
+## 📝 License
+
+Copyright © 2021-present [Sacha Bouillez](https://github.com/prazdevs).
+This project is under [MIT](https://github.com/prazdevs/pinia-plugin-PERSISTEDSTATE/blob/main/LICENSE) license.
