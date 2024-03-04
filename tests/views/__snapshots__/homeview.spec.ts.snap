@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HomeView Page > should take a snapshot of the component 1`] = `
+"<section>
+  <h1>Count: 0</h1><button class="btn btn-outline-success px-5 me-2" data-testid="decrement-button"> - </button><button class="btn btn-outline-success px-5" data-testid="increment-button"> + </button>
+</section>"
+`;
