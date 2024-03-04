@@ -158,4 +158,159 @@ Want to add some feature? PRs are welcome!
 ## 📝 License
 
 Copyright © 2021-present [Sacha Bouillez](https://github.com/prazdevs).
-This project is under [MIT](https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/LICENSE) license.
+This project is under [MIT](https://github.com/prazdevs/pinia-plugin-PERSISTEDSTATE/blob/main/LICENSE) license.
+
+## 💡 Example
+
+The following example illustrates how this pinia-plugin-persistedstate library was applied.
+
+### 1. Pinia-plugin-persistedstate must be installed
+
+With NPM:
+```ssh
+npm i pinia-plugin-persistedstate
+```
+
+With Yarn
+```ssh
+yarn add pinia-plugin-persistedstate
+```
+
+### 2. In the `main.ts` the following lines are added:
+
+piniaPluginPersistedstate is imported from pinia-plugin-persistedstate
+
+```ts
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+```
+
+Then an instance of pinia is created and then the piniaPluginPersistedstate is used
+
+```ts
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+```
+
+Before mounting the application in the #app, this instance of pinia must be used
+
+```ts
+app.use(pinia)
+```
+
+The code would look like this
+
+```ts
+import './assets/main.css'
+
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+
+import App from './App.vue'
+import router from './router'
+
+const app = createApp(App)
+
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+
+app.use(pinia)
+app.use(router)
+
+app.mount('#app')
+```
+
+### 3. Create a store and put the persist attribute on it
+
+For this example we use a store called useCounterStore which is in `src/stores/counter.ts`
+
+```ts
+import { ref } from 'vue'
+import { defineStore } from 'pinia'
+
+export const useCounterStore = defineStore('counter', () => {
+
+  const count = ref<number>(0);
+
+  const increment = () => {
+    count.value++;
+  }
+  
+  const decrement = () => {
+    count.value--;
+  }
+
+  return { count, increment, decrement }
+
+});
+```
+
+After the second parameter of the defineStore, that is, the function, where the key is closed, we must add the following parameter:
+
+```ts
+{ persist: true }
+```
+
+The counterStore will look like this:
+
+```ts
+import { ref } from 'vue'
+import { defineStore } from 'pinia'
+
+export const useCounterStore = defineStore('counter', () => {
+
+  const count = ref<number>(0);
+
+  const increment = () => {
+    count.value++;
+  }
+  
+  const decrement = () => {
+    count.value--;
+  }
+
+  return { count, increment, decrement }
+
+}, { persist: true });
+```
+
+### 4. Use the counterStore in a component or screen
+
+Using a page that was already created I made an HTML to use the counterStore, its variables and methods `src/views/HomeView.vue`
+
+```vue
+<script setup lang="ts">
+import { useCounterStore } from '@/stores/counter';
+import { storeToRefs } from 'pinia';
+const counterStore = useCounterStore();
+const { count } = storeToRefs(counterStore);
+</script>
+
+<template>
+
+  <section>
+
+    <h1>Count: {{ count }}</h1>
+
+    <button @click="counterStore.decrement" class="btn btn-outline-success px-5 me-2" data-testid="decrement-button">
+      -
+    </button>
+
+    <button @click="counterStore.increment" class="btn btn-outline-success px-5" data-testid="increment-button">
+      +
+    </button>
+
+  </section>
+
+</template>
+```
+
+### Images
+
+This is what the application looks like running
+
+![Example 1](./src/assets/images//example1.png)
+
+If we check the localStorage in the application section when inspecting the page we can see that the store counter is saving or changing the count variable, we can reload the page and verify that the state of the page or component is being maintained
+
+![Example 2](./src/assets/images//example2.png)
