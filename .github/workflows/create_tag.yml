@@ -28,11 +28,9 @@ jobs:
       run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
 
     - name: Check if tag exists
-      id: check_tag
       run: |
         if git rev-parse v${{ steps.get_version.outputs.version }} >/dev/null 2>&1; then
           echo "Tag v${{ steps.get_version.outputs.version }} already exists"
-          exit 1
         fi
 
     - name: Remove existing tag if exists
