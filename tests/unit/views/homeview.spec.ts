@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { shallowMount } from '@vue/test-utils';
-import HomeView from '../../src/views/HomeView.vue';
+import HomeView from '../../../src/views/HomeView.vue';
 import { createPinia } from 'pinia';
 
 describe('HomeView Page', () => {
