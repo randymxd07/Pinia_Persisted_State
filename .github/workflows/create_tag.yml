@@ -35,8 +35,13 @@ jobs:
           exit 1
         fi
 
+    - name: Remove existing tag if exists
+      run: |
+        if git rev-parse v${{ steps.get_version.outputs.version }} >/dev/null 2>&1; then
+          git tag -d v${{ steps.get_version.outputs.version }}
+        fi
+
     - name: Create tag
-      if: ${{ steps.check_tag.outcome != 'failure' }}
       run: |
         git tag -a v${{ steps.get_version.outputs.version }} -m "Version ${{ steps.get_version.outputs.version }}"
         git push origin v${{ steps.get_version.outputs.version }}
