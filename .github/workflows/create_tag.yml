@@ -41,5 +41,5 @@ jobs:
 
     - name: Create tag
       run: |
-        git tag -a v${{ steps.get_version.outputs.version }} -m "Version ${{ steps.get_version.outputs.version }}"
-        git push origin v${{ steps.get_version.outputs.version }}
+        git tag -fa v${{ steps.get_version.outputs.version }} -m "Version ${{ steps.get_version.outputs.version }}"
+        git push --force origin v${{ steps.get_version.outputs.version }}
