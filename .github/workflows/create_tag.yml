@@ -36,10 +36,11 @@ jobs:
     - name: Remove existing tag if exists
       run: |
         if git rev-parse v${{ steps.get_version.outputs.version }} >/dev/null 2>&1; then
+          git push --delete origin v${{ steps.get_version.outputs.version }}
           git tag -d v${{ steps.get_version.outputs.version }}
         fi
 
     - name: Create tag
       run: |
-        git tag -fa v${{ steps.get_version.outputs.version }} -m "Version ${{ steps.get_version.outputs.version }}"
-        git push --force origin v${{ steps.get_version.outputs.version }}
+        git tag -a v${{ steps.get_version.outputs.version }} -m "Version ${{ steps.get_version.outputs.version }}"
+        git push origin v${{ steps.get_version.outputs.version }}
