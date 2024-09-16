@@ -20,15 +20,15 @@
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
     "@types/jsdom": "^21.1.6",
-    "@types/node": "^20.12.11",
+    "@types/node": "^22.2.0",
     "@vitejs/plugin-vue": "^5.0.3",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.5.1",
-    "jsdom": "^24.0.0",
     "npm-run-all2": "^6.2.2",
+    "jsdom": "^24.1.1",
     "typescript": "~5.4.5",
-    "vite": "^5.2.11",
+    "vite": "^5.4.0",
     "vitest": "^1.6.0",
-    "vue-tsc": "^2.0.17"
+    "vue-tsc": "^2.0.29"
   }
 }
